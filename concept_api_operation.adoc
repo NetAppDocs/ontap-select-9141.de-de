@@ -1,0 +1,83 @@
+---
+sidebar: sidebar 
+permalink: concept_api_operation.html 
+keywords: rest api, deploy rest api, rest, operation, basic operation 
+summary: IM RUHEZUSTAND werden einheitliche Technologien und Best Practices erstellt, jedoch können die Details jeder API je nach dem verfügbaren Design variieren. Vor der Verwendung der API sollten Sie auf die Details und betrieblichen Merkmale der ONTAP Select Deploy-API achten. 
+---
+= Grundlegende betriebliche Eigenschaften
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+IM RUHEZUSTAND werden einheitliche Technologien und Best Practices erstellt, jedoch können die Details jeder API je nach dem verfügbaren Design variieren. Vor der Verwendung der API sollten Sie auf die Details und betrieblichen Merkmale der ONTAP Select Deploy-API achten.
+
+
+
+== Hypervisor-Host oder ONTAP Select-Node
+
+Ein _Hypervisor-Host_ ist die zentrale Hardware-Plattform, die eine ONTAP Select Virtual Machine hostet. Wenn eine ONTAP Select Virtual Machine auf einem Hypervisor-Host bereitgestellt und aktiv ist, gilt die Virtual Machine als „_ONTAP Select Node_“. Ab Version 3 der Deploy REST API sind Host- und Node-Objekte voneinander getrennt und unterscheiden sich. Dadurch wird eine 1:n-Beziehung möglich, bei der ein oder mehrere ONTAP Select Nodes auf demselben Hypervisor-Host ausgeführt werden können.
+
+
+
+== Objektkennungen
+
+Jeder Ressourceninstanz oder jedem Objekt wird eine eindeutige Kennung zugewiesen, wenn sie erstellt wird. Diese Kennungen sind global eindeutig in einer bestimmten Instanz von ONTAP Select Deploy. Nachdem ein API-Aufruf ausgegeben wurde, der eine neue Objektinstanz erstellt, wird der zugeordnete id-Wert an den Anrufer im zurückgegeben `location` Kopfzeile der HTTP-Antwort. Sie können die Kennung extrahieren und bei nachfolgenden Anrufen verwenden, wenn Sie sich auf die Ressourceninstanz beziehen.
+
+
+NOTE: Der Inhalt und die interne Struktur der Objektkennungen können jederzeit geändert werden. Wenn Sie auf die zugeordneten Objekte verweisen, sollten Sie die Kennungen für die entsprechenden API-Aufrufe nur nach Bedarf verwenden.
+
+
+
+== Identifikatoren anfordern
+
+Jeder erfolgreichen API-Anforderung wird eine eindeutige Kennung zugewiesen. Die Kennung wird im zurückgegeben `request-id` Kopfzeile der zugehörigen HTTP-Antwort. Sie können eine Anforderungskennung verwenden, um sich kollektiv auf die Aktivitäten einer einzelnen spezifischen API-Anforderungstransaktion zu beziehen. Sie können beispielsweise alle Ereignismeldungen einer Transaktion basierend auf der Anfrage-ID abrufen
+
+
+
+== Synchrone und asynchrone Anrufe
+
+Es gibt zwei primäre Möglichkeiten, wie ein Server eine von einem Client empfangene HTTP-Anfrage durchführt:
+
+* Synchron
+Der Server führt die Anforderung sofort aus und antwortet mit einem Statuscode von 200, 201 oder 204.
+* Asynchron
+Der Server akzeptiert die Anfrage und antwortet mit dem Statuscode 202. Dies zeigt an, dass der Server die Clientanforderung angenommen hat und eine Hintergrundaufgabe gestartet hat, um die Anforderung abzuschließen. Der endgültige Erfolg oder Fehler ist nicht sofort verfügbar und muss durch zusätzliche API-Aufrufe ermittelt werden.
+
+
+
+
+== Bestätigen Sie den Abschluss eines lang laufenden Jobs
+
+Im Allgemeinen wird jede Operation, die lange Zeit in Anspruch nehmen kann, asynchron mit einem verarbeitet
+Hintergrundaufgabe auf dem Server. Mit der Deploy REST API wird jede Hintergrundaufgabe durch ein verankert
+Jobobjekt, das die Aufgabe verfolgt und Informationen bereitstellt, z. B. den aktuellen Status. Ein Job-Objekt,
+Einschließlich seiner eindeutigen Kennung wird in der HTTP-Antwort zurückgegeben, nachdem eine Hintergrundaufgabe erstellt wurde.
+
+Sie können das Jobobjekt direkt abfragen, um den Erfolg oder den Fehler des zugeordneten API-Aufrufs zu ermitteln.
+Weitere Informationen finden Sie unter „_Asynchronous Processing Using the Job Object_“.
+
+Neben der Verwendung des Objekts Job gibt es weitere Möglichkeiten, wie Sie den Erfolg oder das Scheitern eines bestimmen können
+Anforderung, einschließlich:
+
+* Ereignismeldungen
+Sie können alle Ereignismeldungen, die einem bestimmten API-Aufruf zugeordnet sind, mithilfe der mit der ursprünglichen Antwort zurückgegebenen Anforderungs-id abrufen. Die Ereignismeldungen enthalten in der Regel Hinweise auf Erfolg oder Fehler und können auch nützlich sein, wenn ein Fehlerzustand behoben wird.
+* Ressourcenstatus oder -Status
+Mehrere der Ressourcen behalten einen Status oder Statuswert bei, den Sie abfragen können, um indirekt den Erfolg oder das Fehlschlagen einer Anfrage zu bestimmen.
+
+
+
+
+== Sicherheit
+
+Die Deploy-API nutzt die folgenden Sicherheitstechnologien:
+
+* Sicherheit In Transportschicht
+Der gesamte Datenverkehr, der zwischen dem bereitzustellenden Server und dem Client über das Netzwerk gesendet wird, wird über TLS verschlüsselt. Die Verwendung des HTTP-Protokolls über einen unverschlüsselten Kanal wird nicht unterstützt. TLS-Version 1.2 wird unterstützt.
+* HTTP-Authentifizierung
+Für jede API-Transaktion wird die Basisauthentifizierung verwendet. Jeder Anforderung wird ein HTTP-Header hinzugefügt, der den Benutzernamen und das Passwort in einem base64-String enthält.
+

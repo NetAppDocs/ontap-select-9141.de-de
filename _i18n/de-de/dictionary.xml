@@ -1485,7 +1485,6 @@ Der Pfad bestimmt die spezifische Ressource, auf die die Aktion im Rahmen der Du
   <block id="82ef718f4ebe0c276814ee3d51e33361" category="list-text">SnapRestore</block>
   <block id="5bc075cee240a70af54270621d93765c" category="list-text">SnapVault</block>
   <block id="306a97cf9f5c4fb1198deb28baf7cf94" category="list-text">Disaster Recovery für Storage VM (SVM DR)</block>
-  <block id="8e59a8dddb8fd9611be1f2b3aca8c4fa" category="admonition">ONTAP Select 9.12.1 und höher unterstützt jetzt SVM DR als Quelle mit maximal 16 Beziehungen. Die DR-Unterstützung für SVM ist auf die Verwendung der Quell-ONTAP-Version auf Versionen +2, also 9.12.1 auf 9.14.1 beschränkt.</block>
   <block id="a56a12489213d10b531398efee448f95" category="section-title">ONTAP-Funktionen, die separat lizenziert werden</block>
   <block id="585f4a038bba40a29999437c007446e9" category="paragraph">Sie müssen eine separate Lizenz für jede ONTAP-Funktion erwerben, die standardmäßig nicht aktiviert ist. Dazu gehören:</block>
   <block id="cd4d0565c73e994a0df5b7c0a072acc6" category="list-text">Datenverfügbarkeitsservice</block>
@@ -3773,4 +3772,5 @@ Storage-Aggregat show-spare-Disks</block>
   <block id="1c5ffa58ac07641f5cec5616c07b2ba2" category="sidebar">Fügen Sie ONTAP Select-Bilder hinzu</block>
   <block id="0a15f7ba73868a32304fdf52855463c9" category="sidebar">ONTAP Select-Bilder entfernen</block>
   <block id="afc9d68a1be701598b5ef94dc0be2844" category="sidebar">Wiederherstellung in einem Cluster mit zwei Nodes</block>
+  <block id="f99bb666310fb365b4d0029c161a384b" category="admonition">ONTAP Select 9.12.1 und höher unterstützt jetzt SVM DR als Quelle und Ziel mit maximal 16 Beziehungen. Die DR-Unterstützung der SVM ist auf die Verwendung der Quell-ONTAP-Version auf Version +2 beschränkt. Beispielsweise kann die ONTAP Select 9.12.1 Quelle eine Verbindung mit den Ziel-ONTAP-Versionen 9.12.1, 9.13.1 oder 9.14.1 herstellen.</block>
 </blocks>

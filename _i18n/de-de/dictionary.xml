@@ -3679,7 +3679,6 @@ Storage-Aggregat show-spare-Disks</block>
   <block id="bf228c91d777320bb66324531a85cdb5" category="list-text">Proxy-URL (optional)</block>
   <block id="a070d5cad46a2ff939c511d82e8fa8a6" category="list-text">Geben Sie *?* ein, und drücken Sie *Enter*, um eine Liste der verfügbaren Management Shell-Befehle anzuzeigen.</block>
   <block id="f8304478cfdeb2db287b6dcf0b36f3a8" category="sidebar">NetApp ONTAP Select ist eine softwaredefinierte Storage-Appliance, die auf einer Vielzahl von Standard-Hardware-Servern mit VMware ESXi oder KVM (Kernel-Based Virtual Machine) implementiert werden kann. Mit dieser Lösung erhalten Sie die nötige Flexibilität zum Aufbau einer flexiblen und skalierbaren Private-Cloud-Infrastruktur. Diese Website enthält die Dokumentation für ONTAP Select 9.14.1.</block>
-  <block id="7436b418bed093768e360d32105591d2" category="sidebar">ONTAP Select-Dokumentation</block>
   <block id="be11c74c1dd7f307bb80183a90dc2067" category="sidebar">Los geht's</block>
   <block id="7d0ee6fed10d3d4e5c9ee496729ab519" category="sidebar">Versionshinweise</block>
   <block id="33871b6190a8d5adbe8b15282054766c" category="sidebar">Was ist neu</block>
@@ -3774,4 +3773,5 @@ Storage-Aggregat show-spare-Disks</block>
   <block id="f99bb666310fb365b4d0029c161a384b" category="admonition">ONTAP Select 9.12.1 und höher unterstützt jetzt SVM DR als Quelle und Ziel mit maximal 16 Beziehungen. Die DR-Unterstützung der SVM ist auf die Verwendung der Quell-ONTAP-Version auf Version +2 beschränkt. Beispielsweise kann die ONTAP Select 9.12.1 Quelle eine Verbindung mit den Ziel-ONTAP-Versionen 9.12.1, 9.13.1 oder 9.14.1 herstellen.</block>
   <block id="78fb396e8c541b492002e6b94963fe83" category="list-text">ONTAP Select 9.14.1 unterstützt VMware ESXi 8.0.2.</block>
   <block id="2908aba1afb68c480565ae68ebe3508c" category="list-text">Ab ONTAP 9.13.1 wird VMware ESXi 8.0.1 GA (Build 20513097) mit Hardwareversion 4 und höher unterstützt.</block>
+  <block id="7f354690d454e4370ee79703e014fbd0" category="sidebar">ONTAP Select 9.14.1-Dokumentation</block>
 </blocks>
